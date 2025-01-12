@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Admission Form</title>
+    <style>
+         {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('admission.jpg'); /* Replace with your image URL */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.8); /* Added opacity to background */
+            padding: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            width: 350px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="date"],
+        input[type="file"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        textarea {
+            resize: none;
+        }
+
+        button.submit-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px;
+            width: 100%;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button.submit-btn:hover {
+            background-color: #45a049;
+        }
+
+        #error-message {
+            font-size: 14px;
+            color: red;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Admission Form</h1>
+        <form id="admissionForm" onsubmit="return validateForm()">
+            
+            <div class="form-group">
+                <label for="fullName">Full Name:</label>
+                <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+            </div>
+
+            <div class="form-group">
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" name="dob" required>
+            </div>
+
+            <div class="form-group">
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender" required>
+                    <option value="">Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            
+
+            <div class="form-group">
+                <label for="studyMode">Preferred Mode of Study:</label>
+                <select id="studyMode" name="studyMode" required>
+                    <option value="">Select Mode</option>
+                    <option value="online">Online</option>
+                    <option value="offline">Offline</option>
+                    <option value="hybrid">Hybrid (Online & Offline)</option>
+                </select>
+            </div>
+
+            
+            <div class="form-group">
+                <label for="address">Address:</label>
+                <textarea id="address" name="address" rows="4" placeholder="Enter your address" required></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+        <p id="error-message" style="color: red; display: none;">Please fill in all required fields correctly.</p>
+    </div>
+
+    <script>
+        function validateForm() {
+            let fullName = document.getElementById("fullName").value;
+            let email = document.getElementById("email").value;
+            let phone = document.getElementById("phone").value;
+            let dob = document.getElementById("dob").value;
+            let gender = document.getElementById("gender").value;
+            let course = document.getElementById("course").value;
+            let studyMode = document.getElementById("studyMode").value;
+            let startDate = document.getElementById("startDate").value;
+            let resume = document.getElementById("resume").value;
+            let address = document.getElementById("address").value;
+
+            // Check if all required fields are filled
+            if (!fullName || !email || !phone || !dob || !gender || !course || !studyMode || !startDate || !resume || !address) {
+                document.getElementById("error-message").style.display = "block";
+                return false;
+            }
+
+            // Check if the resume file is selected and has the correct extension
+            if (resume && !/\.(pdf|docx)$/.test(resume)) {
+                alert("Please upload a PDF or DOCX file for your resume.");
+                return false;
+            }
+
+            // Hide the error message and allow form submission
+            document.getElementById("error-message").style.display = "none";
+            alert("Form Submitted Successfully!");
+            return true;
+        }
+    </script>
+</body>
+</html>
